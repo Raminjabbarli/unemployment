@@ -22,16 +22,19 @@ output:
 
   
 ```{r}
+library(readxl)
+unemployment_women <- read_excel("~/Desktop/Autumn 2017/Statistics 321/unemployment rate/unemployment_women.xlsx", 
+    skip = 2)
 install.packages("dplyr")
 library(dplyr)
-select(unemployment_women, `2006` : `2009`, -`2001`)
+dplyr::select(unemployment_women, `2006` : `2009`, -`2001`)
 ```
 
 
 
 Last three columns
 ```{r}
-select(unemployment_women, `2012`:`2014`)
+dplyr::select(unemployment_women, `2012`:`2014`)
 
 ```
 
@@ -53,11 +56,14 @@ Pay attention here: When you refer to columns directly inside `select()`, you do
   b. Use `select()` and a helper function to print out a `tbl` that selects only variables that start with a certain letter or string of letters.
   
 ```{r}
-select(unemployment_men, contains('10'))
+library(readxl)
+unemployment_men <- read_excel("~/Desktop/Autumn 2017/Statistics 321/unemployment rate/unemployment_men.xlsx", 
+    skip = 2)
+dplyr::select(unemployment_men, contains('10'))
 ```
 
 ```{r}
-select(unemployment_men, starts_with("200"))
+dplyr::select(unemployment_men, starts_with("200"))
 ```
 
 
@@ -241,7 +247,7 @@ Calculating the average of men's unemployment rate for last four years of the da
 ```{r}
 
 unemployment_men %>%
-select(`2011`:`2014`) %>%
+dplyr::select(`2011`:`2014`) %>%
 summarise (mean(`2011`), mean(`2012`), mean(`2013`), mean(`2014`))
 ```
 
@@ -251,7 +257,7 @@ Calculating the average of women's unemployment rate for last four years of the 
 
 ```{r}
 unemployment_women %>%
-select(`2011`:`2014`) %>%
+dplyr::select(`2011`:`2014`) %>%
 summarise (mean(`2011`), mean(`2012`), mean(`2013`), mean(`2014`)) 
 ```
 
@@ -259,7 +265,10 @@ summarise (mean(`2011`), mean(`2012`), mean(`2013`), mean(`2014`))
 Calculating the average of total population's unemployment rate for last four years of the data
   
 ```{r}
+library(readxl)
+unemployment_total <- read_excel("~/Desktop/Autumn 2017/Statistics 321/unemployment rate/unemployment_total.xlsx", 
+    skip = 2)
 unemployment_total %>%
-select(`2011`:`2014`) %>%
+dplyr::select(`2011`:`2014`) %>%
 summarise (mean(`2011`), mean(`2012`), mean(`2013`), mean(`2014`)) 
 ```
