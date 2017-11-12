@@ -29,7 +29,7 @@ If you are merging separate tables as part of your data manipulation process, ar
 Yes, all are characters. So, there is not difference between the keys or their types. 
 
 
-4. Perform each version of the mutating joins (don't forget to specify the `by` argument) and print the results to the console. Describe what each join did to your datasets and what the resulting data table looks like. For those joining two separate datasets, did any of these joins result in your desired final dataset? Why or why not?
+4. Perform each version of the mutating joins (don't forget to specify the `by` argument) and print the results to the console. Describe what each join did to your datasets and what the resulting data table looks like. For those joining  two separate datasets, did any of these joins result in your desired final dataset? Why or why not?
 
 
 
