@@ -204,7 +204,7 @@ ggplot(joint_unemployment_total,
 ```
 5. From the plots you've created thus far, do any of them seem appropriate for a general audience? Why or why not? If so, what do you think you'd still need to do to make them more suitable as explanatory visualizations? 
 
- Yes, I think the two plots which I created below are more appropriate for general audience. Both show the unemployment rate by years for men and women. Comparing is easy in these plot. They are in simple form, so the audience can focus on the data not the merely visualization of data. 
+ Yes, I think the two plots which I created below are more appropriate for general audience. Both show the unemployment rate by years for men and women. Comparing is easy in these plot. They are in simple form, so the audience can focus on the data not the merely visualization of data.  For both these plots a title is required to indicate that the plots reflect unemployment rate for two genders in Iran. 
 
 
 ```{r}
