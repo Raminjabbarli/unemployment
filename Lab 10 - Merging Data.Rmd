@@ -150,6 +150,8 @@ reduce(tables, left_join, by = "Province | Year")
 Binding row, assiging number for genders, and deleting 2001 because has not data.
 
 ```{r}
+install.packages("dplyr")
+library(dplyr)
 bind_rows(unemployment_men, unemployment_women)
 bind_rows(men = unemployment_men, women = unemployment_women, .id = "gender")
 
@@ -157,9 +159,19 @@ bind_rows(men = unemployment_men, women = unemployment_women, .id = "gender")
 ```
 
 
+```{r}
+install.packages("tidyr")
+library(tidyr)
+joint_unemployment
+joint_unemployment_total <- joint_unemployment[joint_unemployment$Province == 'Total', ]
+```
 
 
 
+```{r}
+joint_unemployment_total
+
+```
 
 
 
