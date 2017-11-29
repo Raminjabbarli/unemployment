@@ -1,0 +1,134 @@
+---
+title: "Lab 13 - Chi square, ANOVA, & correlation"
+author: "Ramin Jabbarialghanab"
+date: "November 21, 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Complete the following exercises below and include all code used to find the answers. Knit together the PDF document and commit both the Lab 13 RMD file and the PDF document to Git. Push the changes to GitHub so both documents are visible in your public GitHub repository.
+
+**1. Select two categorical variables from your dataset whose association you're interested in and conduct a chi-square test.** *If you only have continuous variables you will need to create categorical versions of these variables to make this work. You can do this using the `cut` function in mutate to add a new, categorical version of your variable to your dataset.*
+
+```{r}
+install.packages("ggplot2")
+install.packages("readxl")
+library(tidyverse)
+library(foreign)
+library(ggplot2)
+library(readxl)
+joint_unemployment_total <- read_excel("~/Desktop/Autumn 2017/Statistics 321/unemployment rate/joint_unemployment_total.xlsx")
+Chi <- joint_unemployment_total[,-2]
+mosaicplot(table(Chi), 
+           shade = TRUE)
+```
+
+
+
+  a. Describe any modifications made to your data for the chi-square test and the composition of the variables used in the test (e.g., study time is measured using a three-category ordinal variable with categories indicating infrequent studying, medium studying, and frequent studying).
+  
+  I removed the second column from my data to have two variables of gender (men and women) and value for this assignment. But only the variable of gender is categorical, so the value is continues, I treated that as categorical. 
+
+  b. Does there appear to be an association between your two variables? Explain your reasoning.
+  That seems there is an association between being women and higher rate of umeployment.
+
+```{r}
+chisq.test(table(Chi))
+```
+
+  c. What are the degrees of freedom for this test and how is this calculated?
+  
+  For two-way chi-square, degrees of freedom can be calculated with this formula: (df)=(R−1)(C−1) For my data the degree of freedom is (df) = (17-1)(2-1) = 16 
+  
+
+  d. What if the critical value for the test statistic? What is the obtained value for the test statistic?
+  
+   The critical value for the test statistic is 0.3239. and the X-squared for the test is 18. 
+
+
+  e. How do you interpret the results of this test and the implications for your theoretical arguments about these two variables?
+  
+Since the critical value is extreme (0.3239), the I can reject the null hypothesis that there is no different between unemployment rate of men and unemployment rate of women. 
+
+**2. Select one continuous variable and one categorical variable from your dataset whose association you're interested in exploring.** *Again, note that you'll need to create a categorical version of your independent variable to make this work.*
+
+```{r}
+mosaicplot(table(Chi), 
+           shade = TRUE)
+```
+
+
+  a. Describe any modifications made to your data for the ANOVA test and the composition of the variables used in the test (e.g., college rank is measured using a four-category variable with values indicating freshman, sophomore, junior, and senior class).
+
+I removed the year column from my data and now, I have categorical variable of gender and continuos variable of value for my data. 
+
+           
+  b. What are the degrees of freedom (both types) for this test and how are they calculated?
+  
+  Since the number of rows is 17 and the number of columns is 2 based on the formula DF = (r-1)(c-1), the degree of freedom is 16. 
+
+
+  c. What is the obtained value of the test statistic?
+
+```{r}
+# Bivariate contingency table
+library(gmodels)
+CrossTable(table(Chi), 
+           digits = 2, 
+           prop.r = TRUE, 
+           prop.c = FALSE, 
+           prop.t = FALSE, 
+           prop.chisq = FALSE)
+```
+
+
+  d. What do the resuts tell you about the association between these two variables? What does this mean for your theoretical arguments about these variables?
+
+Actually my result is messy, I could not figure out from the outcome the results. 
+
+**3. Select two continuous variables from your dataset whos association you're interested in exploring.**
+
+I selected gender and value ariables to look at the association. 
+
+  a. What is the correlation between these two variables? 
+Altough I changed the the values to the numeric, the system did not give me correlation.
+```{r}
+Chi$gender <- as.numeric(Chi$gender)
+Chi$value <- as.numeric(Chi$value)
+cor(Chi)
+```
+
+
+  b. Create a scatterplot of the variables you selected. Does the correlation coefficient accurately represent the relationship between these two variables? Why or why not? 
+  
+ my the variables are not continous, I changed it to numeric one, but still I could not creat scoterplot with the variables. 
+  
+```{r}
+install.packages("ggplot2")
+library(ggplot2)
+ggplot(Chi, 
+       aes(x = gender, 
+           y = value,
+           color = gender)
+       )
+```
+
+
+  c. Create a correlation matrix of your data using the `ggcorr` function from the `GGally` package. Be sure to label each cell with the correlation coefficient. 
+
+```{r}
+install.packages("GGally")
+library(GGally)
+ggcorr(Chi)
+```
+
+
+  d. What does this visual representation of correlation coefficients tell you about your data? Are there any relationships (or lack thereof) that are surprising to you? Why or why not?
+
+
+In my case there is no specific visualization, I am not sure what does mean this blank. May the data is not converted prooerly, and may be the that mean no correlation. 
+
+  e. What are the limitations of correlation coefficients? Can they ever be misleading? If so, in what ways? 
+
+Unfortunately, I do not have change to interpret the visualization. 
