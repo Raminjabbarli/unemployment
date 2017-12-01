@@ -74,22 +74,22 @@ data_set
 
 
 
-```{r, eval = FALSE, echo=FALSE}
+```{r, echo=FALSE}
 # Creating variable index for data_set (truncated, more efficient code)
 
 data_set <- within(data_set,{
-# Description of the variables
-description(gender) <- "gender is defined binary in the data and refers to men and women in the Iran"
-description(year) <- "refers to the year which data is collected"
-description(value) <- "shows the percentage of unemployment for each gender in the specified year"
-
-# Wording of survey item/interview questions (if applicable)
-wording(gender) <- "The Statistics Center of Iran did not release the questionnaire of surveys. However, in Iran mostly. I could not find the questionnaires to write working for other variables"
-
-# type of measurement
-measurement(year) <- "interval"
-measurement(value) <- "ratio"
-measurement(gender) <- "nominal"
+  # Description of the variables
+  description(gender) <- "gender is defined binary in the data and refers to men and women in the Iran"
+  description(year) <- "refers to the year which data is collected"
+  description(value) <- "shows the percentage of unemployment for each gender in the specified year"
+  
+  # Wording of survey item/interview questions (if applicable)
+  wording(gender) <- "The Statistics Center of Iran did not release the questionnaire of surveys. However, in Iran mostly. I could not find the questionnaires to write working for other variables"
+  
+  # type of measurement
+  measurement(year) <- "interval"
+  measurement(value) <- "ratio"
+  measurement(gender) <- "nominal"
 
 })
 
@@ -98,7 +98,7 @@ measurement(gender) <- "nominal"
 \pagebreak
 
 ```{r}
-codebook(joint_unemployment_total)
+codebook(data_set)
 ```
 
 
