@@ -1,0 +1,70 @@
+---
+title: "Lab 15 - Multivariate Regression & Interpretation"
+author: "Ramin Jabbarialghanab"
+date: "November 30, 2017"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Complete the following exercises below and include all code used to find the answers. Knit together the PDF document and commit both the Lab 15 RMD file and the PDF document to Git. Push the changes to GitHub so both documents are visible in your public GitHub repository.
+
+**1. Select a second explanatory variable from your dataset that you think has implications for the theoretical association of your focal relationship.**
+
+```{r}
+library(readxl)
+joint_unemployment_total <- read_excel("~/Desktop/Autumn 2017/Statistics 321/unemployment rate/joint_unemployment_total.xlsx")
+model3 <- lm(value ~ gender + year, data = joint_unemployment_total)
+```
+
+```{r}
+summary(model3)
+```
+
+a. Describe the theoretical reasoning for selecting this variable.
+
+I would examine the explanatory variable of gender over unemployment rate (value). Since, the rate can be chage by year I decided to include explanotory variable of year to control the variable of year. 
+
+b. What type of relationship do you think this variable has with your focal variables? Given that, what do you expect to happen to your focal relationship when it is added to the model?
+
+Acuually, I do not think that "year" has any strong relationship with my focal relatioships, however, I thoguht that the effect of economic sunctions against Iran's nuclear program could hve an intervening relationship with my focal relationship. So, I decided to control year to whether know I am correct.
+
+c. Is it a continuous or categorical variable? What implications does this have for a multivariate regression equation?
+
+It is a categorical variable but numeric, I used factor function and added year as a explnatory variable to the relationship. Controling the variable only changed the relatioship a little bit.   
+
+
+d. Conduct a multivariate linear regression with this additional explanatory variable and save the model object. Print out the full results by calling `summary()` on your model object.
+
+e. Describe the results of the multivariate analysis, highlighting:
+* the apparent association between the control variable and the focal response variable
+* how the focal association changed when you incorporatedthe control variable
+* the implications of these results for your focal association
+
+The relationship between the focal variables is changed from Multiple R-squared of 0.8817 in the bivariate regression model to Adjusted R-squared of  0.8687 in the multivariate analysis. So, the fits in the both bivariate and multivariate analysis. However, controlling year variable does not imrpove the relationshiop. For all the given years the association of the years with the focal relationship is negative and the negativity is so small for all years.  With this result we can conclude that our focal variables have direct relationship. 
+
+
+f. How well does this model fit the data? Is it an improvement over the bivariate model? Why or why not?
+
+I think this model fits because Adjusted R-squared value equals  0.8687. Thus, the model explains 87% of the variation. It is chnaged little. So, the relationship did not change significantly. Bivariate explains more than multivariate. 
+
+**2. Select any additional variables you want to incorporate into your final model. For each additional variable added to the model answer the following questions:**
+
+This part does not apply to me because I only three variables. There is no additional variable to use for here. 
+
+a. Describe the theoretical reasoning for selecting this variable.
+
+b. What type of relationship do you think this variable has with your focal variables? Given that, what do you expect to happen to your focal relationship when it is added to the model?
+
+c. Is it a continuous or categorical variable? What implications does this have for a multivariate regression equation?
+
+d. Conduct a multivariate linear regression by adding one explanatory variable at a time and save the model objects. Print out the full results by calling `summary()` on each model object.
+
+e. Describe the results of the multivariate analysis, highlighting:
+* the apparent association between each additional control variable and the focal response variable
+* how the focal association changed when you incorporated each control variable
+* the implications of these results for your focal association
+
+f. How well does the full (all explanatory variables included) model fit? Are any of the other models you ran a better fit? Explain how you came to the conclusion you did. 
+
+g. Select the model that you think best fits the data. Provide a brief synopsis of the analysis of your data using this model and describe the implications for the theoretical arguments you set out to test.
